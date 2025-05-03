@@ -31,7 +31,6 @@ cur = conn.cursor()
 
 # Deleta a base antes da carga
 cur.execute('delete from public.Anac')
-cur.execute('delete from public.Anac')
 
 # Carga de dados
 for indice,coluna_df in df.iterrows(): 
