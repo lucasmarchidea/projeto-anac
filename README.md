@@ -1,35 +1,63 @@
-# Projeto ANAC
+# Projeto ANAC — Importação de Dados com Psycopg2
 
-Este projeto tem como objetivo demonstrar a importação de dados de um arquivo JSON para um banco de dados PostgreSQL, realizando a limpeza e transformação dos dados.
+Este projeto é uma introdução prática ao uso de Python para ETL (Extract, Transform, Load) e demonstra o processo completo de importação de dados a partir de um arquivo JSON para um banco de dados PostgreSQL, utilizando Python e a biblioteca `psycopg2`.
 
-## Passos realizados
+---
 
-1. **Importação do arquivo JSON**: O arquivo JSON foi carregado para um DataFrame utilizando a biblioteca 'pandas'.
+## 🔧 Funcionalidades
 
-2. **Seleção e tratamento de dados**: 
-   - Foram selecionadas as colunas mais relevantes do arquivo.
-   - Algumas colunas foram renomeadas para remover acentos e melhorar a compatibilidade com o banco de dados.
+- Leitura de arquivo `.json` com dados de ocorrências da ANAC.
+- Seleção e tratamento das colunas relevantes.
+- Conexão com o banco de dados PostgreSQL.
+- Limpeza da tabela de destino antes da carga.
+- Inserção de dados linha a linha no banco de dados.
+- Confirmação e finalização da transação com segurança.
 
-3. **Criação do banco de dados e da tabela**:
-   - O banco de dados foi criado no PostgreSQL (usando o 'pgAdmin').
-   - A tabela foi definida com as colunas necessárias para armazenar as informações.
+---
 
-4. **Configuração da conexão com o banco de dados**:
-   - Foi estabelecida uma conexão com o banco de dados PostgreSQL utilizando a biblioteca 'psycopg2'.
+## 🧰 Tecnologias Utilizadas
 
-5. **Importação dos dados para o banco**:
-   - Antes da importação, a tabela foi limpa utilizando o comando 'DELETE'.
-   - Os dados foram então inseridos no banco de dados por meio de um loop que percorre o DataFrame.
+- **Python** — linguagem de programação utilizada para processar os dados.
+- **Pandas** — para leitura e manipulação dos dados.
+- **psycopg2** — biblioteca usada para conectar e interagir com o PostgreSQL.
+- **PostgreSQL** — banco de dados relacional onde os dados foram armazenados.
 
-6. **Validação e fechamento da conexão**:
-   - Após a importação, as alterações foram confirmadas com 'conn.commit()'.
-   - A conexão foi encerrada corretamente para garantir que os dados fossem gravados de forma segura.
+---
 
-7. **Refatoração do código**:
-   - O código foi refatorado para melhorar a legibilidade e a eficiência.
+## 📁 Etapas do Processo
 
-## Tecnologias utilizadas
+1. **Importação do arquivo JSON**
+   - O arquivo foi lido utilizando `pandas.read_json()` com suporte para acentuação via `utf-8-sig`.
 
-- **Python**: Linguagem utilizada para o processamento de dados e a conexão com o banco de dados.
-- **Pandas**: Para manipulação de dados e criação do DataFrame.
-- **psycopg2**: Biblioteca Python para conexão e manipulação de dados em PostgreSQL.
+2. **Seleção e renomeação de colunas**
+   - Apenas as colunas necessárias foram mantidas.
+   - Foi feita a padronização de nomes para facilitar o uso no banco.
+
+3. **Configuração da conexão**
+   - Definidos os parâmetros de acesso ao banco de dados PostgreSQL.
+   - Criada a conexão e o cursor com `psycopg2`.
+
+4. **Limpeza da tabela**
+   - Foi executado um `DELETE` para garantir que não houvesse dados duplicados antes da nova carga.
+
+5. **Inserção dos dados**
+   - Os dados foram inseridos linha por linha com `cursor.execute()`.
+
+6. **Validação e encerramento**
+   - A transação foi confirmada com `conn.commit()`.
+   - A conexão foi encerrada com segurança.
+
+---
+
+## 🗂️ Estrutura Esperada da Tabela no Banco
+
+A tabela `Anac` deve conter os seguintes campos:
+
+- `Numero_da_Ocorrencia` — Inteiro
+- `Classificacao_da_Ocorrencia` — Texto
+- `Data_da_Ocorrencia` — Data
+- `Municipio` — Texto
+- `UF` — Texto
+- `Regiao` — Texto
+- `Nome_do_Fabricante` — Texto
+
