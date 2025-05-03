@@ -49,15 +49,3 @@ Este projeto é uma introdução prática ao uso de Python para ETL (Extract, Tr
 
 ---
 
-## 🗂️ Estrutura Esperada da Tabela no Banco
-
-A tabela `Anac` deve conter os seguintes campos:
-
-- `Numero_da_Ocorrencia` — Inteiro
-- `Classificacao_da_Ocorrencia` — Texto
-- `Data_da_Ocorrencia` — Data
-- `Municipio` — Texto
-- `UF` — Texto
-- `Regiao` — Texto
-- `Nome_do_Fabricante` — Texto
-
